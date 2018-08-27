@@ -6,14 +6,14 @@ const DIST = path.resolve(__dirname, 'dist')
 
 module.exports = {
   entry: {
-    app: './src/index.ts'
+    app: './src/index.tsx'
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.tsx', '.js']
   },
   module: {
     rules: [{
-      test: /\.ts$/,
+      test: /\.tsx?$/,
       loader: 'ts-loader'
     }]
   },
