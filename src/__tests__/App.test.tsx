@@ -3,6 +3,7 @@ import 'jest-enzyme'
 import * as React from 'react'
 
 import { App } from '../App'
+import { LoadingPage } from '../pages/LoadingPage'
 import { QuestionPage } from '../pages/QuestionPage'
 import { ResultsPage } from '../pages/ResultsPage'
 import { WelcomePage } from '../pages/WelcomePage'
@@ -23,7 +24,11 @@ describe(App, () => {
     const createQuizMock = jest.fn().mockResolvedValue(new Quiz(SAMPLE_QUESTIONS))
     const app = shallow(<App createQuiz={createQuizMock} />)
 
+    // Loading Page
+    expect(app.find(LoadingPage)).toExist()
+
     await allPromisesResolved()
+    expect(app.find(LoadingPage)).not.toExist()
 
     // Welcome Page
     expect(app.find(WelcomePage)).toExist()
@@ -58,8 +63,10 @@ describe(App, () => {
     expect(app.find(ResultsPage)).not.toExist()
 
     // Loading...
+    expect(app.find(LoadingPage)).toExist()
 
     await allPromisesResolved()
+    expect(app.find(LoadingPage)).not.toExist()
 
     // Welcome Page
     expect(app.find(WelcomePage)).toExist()

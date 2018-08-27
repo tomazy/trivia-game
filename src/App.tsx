@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { ErrorPage } from './pages/ErrorPage'
+import { LoadingPage } from './pages/LoadingPage'
 import { QuestionPage } from './pages/QuestionPage'
 import { ResultsPage } from './pages/ResultsPage'
 import { WelcomePage } from './pages/WelcomePage'
@@ -39,7 +40,9 @@ export class App extends React.Component<Props, State> {
     }
 
     if (quiz === undefined) {
-      return <div>please wait...</div>
+      return (
+        <LoadingPage />
+      )
     }
 
     if (quiz.numAnswers === quiz.numQuestions) {
