@@ -70,6 +70,7 @@
     "precommit": "lint-staged",
     "start": "webpack-dev-server --config webpack.dev.js",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "deploy": "now --public --name trivia-game dist/"
   }
 }
