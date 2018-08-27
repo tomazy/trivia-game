@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import { OnBegin, WelcomePage } from '../../pages/WelcomePage'
 
-describe('<WelcomePage />', () => {
+describe(WelcomePage, () => {
   let onBeginMock: OnBegin
 
   beforeEach(() => {

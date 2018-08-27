@@ -1,4 +1,4 @@
-type Answer = string
+export type Answer = string
 
 export interface Question {
   questionText: string
@@ -11,5 +11,9 @@ export class Quiz {
 
   public get numQuestions() {
     return this.questions.length
+  }
+
+  public getQuestion(index: number) {
+    return this.questions[index]
   }
 }
