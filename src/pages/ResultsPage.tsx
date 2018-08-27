@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Button } from '../components/Button'
+import { CorrectMark } from '../components/CorrectMark'
+import { WrongMark } from '../components/WrongMark'
 import { Quiz } from '../quiz'
 
 export type OnPlayAgain = () => void
@@ -19,8 +21,8 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
         <div className='w1 mr2 flex-none'>
           {
             quiz.isAnswerCorrectAt(i)
-              ? '+'
-              : '-'
+              ? <CorrectMark />
+              : <WrongMark />
           }
         </div>
         <div>
@@ -28,7 +30,7 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
             {q.questionText}
           </div>
           <div className='f7 i'>
-            Correct answer: "{q.correctAnswer}"
+            correct answer: {q.correctAnswer}
           </div>
         </div>
       </div>
@@ -39,11 +41,11 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
     <React.Fragment>
       <h1>You scored {quiz.score}/{quiz.numQuestions}</h1>
 
-      <div className='tl'>
+      <div className='tl mb3'>
         {questions}
       </div>
 
-      <div>
+      <div className='pb3'>
         <Button onClick={() => onPlayAgain()}>Play Again?</Button>
       </div>
     </React.Fragment>
