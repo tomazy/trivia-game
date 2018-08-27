@@ -32,6 +32,8 @@ Used technology:
 
 - `yarn build && yarn deploy`
 
-### Aliasing production
+### Aliasing production deployment
 
-- `now alias https://trivia-game-apcjeeahla.now.sh trivia-game`
+(See https://zeit.co/docs/features/aliases#aliasing-basics)
+
+- `yarn alias`

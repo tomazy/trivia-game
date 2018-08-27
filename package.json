@@ -33,6 +33,7 @@
     "jest-fetch-mock": "^1.6.5",
     "lint-staged": "^7.2.2",
     "mini-css-extract-plugin": "^0.4.2",
+    "now": "^11.4.0",
     "style-loader": "^0.22.1",
     "ts-jest": "^23.1.4",
     "ts-loader": "^4.5.0",
@@ -71,6 +72,7 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "test": "jest",
     "test:cov": "jest --coverage",
-    "deploy": "now --public --name trivia-game dist/"
+    "deploy": "cp now.json dist/ && now deploy --public dist/",
+    "deploy:alias": "now alias"
   }
 }
