@@ -101,7 +101,7 @@ export class App extends React.Component<Props, State> {
     let { quiz } = this.state
     quiz = quiz!.setAnswer(questionIndex, answer)
 
-    if (questionIndex < quiz!.numQuestions - 1) {
+    if (questionIndex < quiz.numQuestions - 1) {
       this.setState({ quiz, questionIndex: questionIndex + 1 })
     } else {
       this.setState({ quiz })

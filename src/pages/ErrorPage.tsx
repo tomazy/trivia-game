@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ErrorPage = ({ error, onTryAgain }: Props) => (
-  <React.Fragment>
+  <div className='h-100 flex flex-column justify-center items-center'>
     <p className='red'>
       {error}
     </p>
@@ -17,5 +17,5 @@ export const ErrorPage = ({ error, onTryAgain }: Props) => (
     <div>
       <Button onClick={() => onTryAgain()}>Try Again</Button>
     </div>
-  </React.Fragment>
+  </div>
 )
