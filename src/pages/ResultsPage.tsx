@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Button } from '../components/Button'
 import { Quiz } from '../quiz'
 
 export type OnPlayAgain = () => void
@@ -35,7 +36,7 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <h1>You scored {quiz.score}/{quiz.numQuestions}</h1>
 
       <div className='tl'>
@@ -43,8 +44,8 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
       </div>
 
       <div>
-        <button onClick={() => onPlayAgain()}>Play Again?</button>
+        <Button onClick={() => onPlayAgain()}>Play Again?</Button>
       </div>
-    </div>
+    </React.Fragment>
   )
 }

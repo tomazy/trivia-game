@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Button } from '../components/Button'
 import { Answer, Question } from '../quiz'
 
 export type OnAnswer = (questionIndex: number, answer: Answer) => void
@@ -14,7 +15,7 @@ const ANSWER_TRUE = 'True'
 const ANSWER_FALSE = 'False'
 
 export const QuestionPage = ({ question, questionIndex, numQuestions, onAnswer }: Props) => (
-  <div>
+  <React.Fragment>
     <div className='f4 b'>{question.category}</div>
 
     <p>
@@ -26,8 +27,8 @@ export const QuestionPage = ({ question, questionIndex, numQuestions, onAnswer }
     </div>
 
     <div>
-      <button onClick={() => onAnswer(questionIndex, ANSWER_TRUE)}>True</button>
-      <button onClick={() => onAnswer(questionIndex, ANSWER_FALSE)}>False</button>
+      <Button className={'green'} onClick={() => onAnswer(questionIndex, ANSWER_TRUE)}>True</Button>
+      <Button className={'red'} onClick={() => onAnswer(questionIndex, ANSWER_FALSE)}>False</Button>
     </div>
-  </div>
+  </React.Fragment>
 )

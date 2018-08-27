@@ -2,6 +2,7 @@ import { mount, shallow } from 'enzyme'
 import 'jest-enzyme'
 import * as React from 'react'
 
+import { Button } from '../../components/Button'
 import { Question } from '../../quiz'
 import { OnAnswer, QuestionPage } from '../QuestionPage'
 
@@ -39,16 +40,17 @@ describe(QuestionPage, () => {
   })
 
   it('handles answers', () => {
+    const qIndex = 3
     const page = shallow(
-      <QuestionPage question={question} questionIndex={3} numQuestions={5} onAnswer={onAnswerMock}/>
+      <QuestionPage question={question} questionIndex={qIndex} numQuestions={5} onAnswer={onAnswerMock}/>
     )
-    const trueButton = page.find('button').at(0)
-    const falseButton = page.find('button').at(1)
+    const trueButton = page.find(Button).at(0)
+    const falseButton = page.find(Button).at(1)
 
     trueButton.simulate('click')
-    expect(onAnswerMock).toHaveBeenCalledWith(3, 'True')
+    expect(onAnswerMock).toHaveBeenCalledWith(qIndex, 'True')
 
     falseButton.simulate('click')
-    expect(onAnswerMock).toHaveBeenCalledWith(3, 'False')
+    expect(onAnswerMock).toHaveBeenCalledWith(qIndex, 'False')
   })
 })

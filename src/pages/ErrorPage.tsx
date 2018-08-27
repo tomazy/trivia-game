@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Button } from '../components/Button'
 
 type OnTryAgain = () => void
 
@@ -8,13 +9,13 @@ interface Props {
 }
 
 export const ErrorPage = ({ error, onTryAgain }: Props) => (
-  <div>
+  <React.Fragment>
     <p className='red'>
       {error}
     </p>
 
     <div>
-      <button onClick={() => onTryAgain()}>Try Again</button>
+      <Button onClick={() => onTryAgain()}>Try Again</Button>
     </div>
-  </div>
+  </React.Fragment>
 )

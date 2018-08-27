@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Button } from '../components/Button'
 
 export type OnBegin = () => void
 
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export const WelcomePage = ({ numQuestions, onBegin }: Props) => (
-  <div>
+  <React.Fragment>
     <h1>Welcome to the Trivia Challenge!</h1>
 
     <p>
@@ -20,7 +21,7 @@ export const WelcomePage = ({ numQuestions, onBegin }: Props) => (
     </p>
 
     <div>
-      <button onClick={() => onBegin()}>Begin</button>
+      <Button onClick={() => onBegin()}>Begin</Button>
     </div>
-  </div>
+  </React.Fragment>
 )
