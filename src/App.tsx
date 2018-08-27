@@ -7,7 +7,14 @@ export class App extends React.Component {
   public render() {
     debug('render', this.state)
     return (
-      <WelcomePage numQuestions={10} />
+      <WelcomePage
+        numQuestions={10}
+        onBegin={this.handleOnBegin}
+      />
     )
+  }
+
+  private handleOnBegin = () => {
+    debug('handleOnBegin')
   }
 }
