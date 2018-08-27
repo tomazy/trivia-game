@@ -16,17 +16,17 @@ const ANSWER_FALSE = 'False'
 
 export const QuestionPage = ({ question, questionIndex, numQuestions, onAnswer }: Props) => (
   <React.Fragment>
-    <div className='f4 b'>{question.category}</div>
+    <h2 className='f5 b mt3'>{question.category}</h2>
 
-    <p>
+    <p className='f4 pa4 shadow-2 overflow-auto' style={{minHeight: '10rem'}}>
       {question.questionText}
     </p>
 
-    <div>
+    <div className='f6 mv3'>
       {questionIndex + 1} of {numQuestions}
     </div>
 
-    <div>
+    <div className='flex justify-around'>
       <Button className={'green'} onClick={() => onAnswer(questionIndex, ANSWER_TRUE)}>True</Button>
       <Button className={'red'} onClick={() => onAnswer(questionIndex, ANSWER_FALSE)}>False</Button>
     </div>
