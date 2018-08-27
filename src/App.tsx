@@ -1,9 +1,13 @@
 import * as React from 'react'
+import { WelcomePage } from './pages/WelcomePage'
+
+const debug = require('debug')('g2i:App') // tslint:disable-line
 
 export class App extends React.Component {
   public render() {
+    debug('render', this.state)
     return (
-      <h1>Welcome to the Trivia Challenge!</h1>
+      <WelcomePage numQuestions={10} />
     )
   }
 }
