@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import { App } from '../App'
 import { QuestionPage } from '../pages/QuestionPage'
+import { ResultsPage } from '../pages/ResultsPage'
 import { WelcomePage } from '../pages/WelcomePage'
 import { Quiz } from '../quiz'
 
@@ -19,27 +20,57 @@ const SAMPLE_QUESTIONS = [{
 
 describe(App, () => {
   it('has the happy path', async () => {
-    const quiz = new Quiz(SAMPLE_QUESTIONS)
-    const createQuizMock = jest.fn().mockResolvedValue(quiz)
+    const createQuizMock = jest.fn().mockResolvedValue(new Quiz(SAMPLE_QUESTIONS))
     const app = shallow(<App createQuiz={createQuizMock} />)
 
     await allPromisesResolved()
 
     // Welcome Page
     expect(app.find(WelcomePage)).toExist()
+    expect(app.find(WelcomePage)).toHaveProp('numQuestions', SAMPLE_QUESTIONS.length)
     app.find(WelcomePage).props().onBegin()
+    expect(app.find(WelcomePage)).not.toExist()
 
     // Question Page #1
-    expect(app.find(WelcomePage)).not.toExist()
     expect(app.find(QuestionPage)).toExist()
-    app.find(QuestionPage).props().onAnswer(0, 'A')
+    expect(app.find(QuestionPage)).toHaveProp('question', SAMPLE_QUESTIONS[0])
+    expect(app.find(QuestionPage)).toHaveProp('questionIndex', 0)
+    expect(app.find(QuestionPage)).toHaveProp('numQuestions', SAMPLE_QUESTIONS.length)
+    app.find(QuestionPage).props().onAnswer(0, 'True')
 
     // Question Page #2
     expect(app.find(QuestionPage)).toExist()
-    app.find(QuestionPage).props().onAnswer(1, 'B')
+    expect(app.find(QuestionPage)).toHaveProp('question', SAMPLE_QUESTIONS[1])
+    expect(app.find(QuestionPage)).toHaveProp('questionIndex', 1)
+    expect(app.find(QuestionPage)).toHaveProp('numQuestions', SAMPLE_QUESTIONS.length)
+    app.find(QuestionPage).props().onAnswer(1, 'True')
+    expect(app.find(QuestionPage)).not.toExist()
 
     // Results Page
-    expect(app.find(QuestionPage)).not.toExist()
+    expect(app.find(ResultsPage)).toExist()
+    expect(app.find(ResultsPage)).toHaveProp('quiz')
+    {
+      const quiz = app.find(ResultsPage).props().quiz
+      expect(quiz.numAnswers).toBe(SAMPLE_QUESTIONS.length)
+      expect(quiz.score).toBe(1)
+    }
+    app.find(ResultsPage).props().onPlayAgain()
+    expect(app.find(ResultsPage)).not.toExist()
+
+    // Loading...
+
+    await allPromisesResolved()
+
+    // Welcome Page
+    expect(app.find(WelcomePage)).toExist()
+    app.find(WelcomePage).props().onBegin()
+    expect(app.find(WelcomePage)).not.toExist()
+
+    // Question Page #1
+    expect(app.find(QuestionPage)).toExist()
+    app.find(QuestionPage).props().onAnswer(0, 'A')
+
+    // ... and so on.
   })
 })
 

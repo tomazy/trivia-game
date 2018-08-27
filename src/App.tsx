@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { QuestionPage } from './pages/QuestionPage'
+import { ResultsPage } from './pages/ResultsPage'
 import { WelcomePage } from './pages/WelcomePage'
 import { Answer, Quiz } from './quiz'
 
@@ -13,7 +14,6 @@ interface Props {
 interface State {
   quiz?: Quiz
   questionIndex?: number
-  quizDone?: boolean
 }
 
 export class App extends React.Component<Props, State> {
@@ -22,22 +22,23 @@ export class App extends React.Component<Props, State> {
   }
 
   public async componentWillMount() {
-    const { createQuiz } = this.props
-    const quiz = await createQuiz()
-    this.setState({ quiz })
+    await this.newQuiz()
   }
 
   public render() {
     debug('render', this.state)
-    const { quiz, questionIndex, quizDone } = this.state
+    const { quiz, questionIndex } = this.state
 
     if (quiz === undefined) {
       return <div>please wait...</div>
     }
 
-    if (quizDone) {
+    if (quiz.numAnswers === quiz.numQuestions) {
       return (
-        <div>DONE!</div>
+        <ResultsPage
+          quiz={quiz}
+          onPlayAgain={this.handleOnPlayAgain}
+        />
       )
     }
 
@@ -60,19 +61,38 @@ export class App extends React.Component<Props, State> {
     )
   }
 
+  private async newQuiz() {
+    const { createQuiz } = this.props
+
+    this.setState({
+      questionIndex: undefined,
+      quiz: undefined,
+    })
+
+    const quiz = await createQuiz()
+
+    this.setState({ quiz })
+  }
+
   private handleOnBegin = () => {
     debug('handleOnBegin')
-    this.setState({ questionIndex: 0, quizDone: false })
+    this.setState({ questionIndex: 0 })
   }
 
   private handleOnAnswer = (questionIndex: number, answer: Answer) => {
     debug('handleOnAnswer', questionIndex, answer)
-    const { quiz } = this.state
+    let { quiz } = this.state
+    quiz = quiz!.setAnswer(questionIndex, answer)
 
     if (questionIndex < quiz!.numQuestions - 1) {
-      this.setState({ questionIndex: questionIndex + 1 })
+      this.setState({ quiz, questionIndex: questionIndex + 1 })
     } else {
-      this.setState({ quizDone: true })
+      this.setState({ quiz })
     }
+  }
+
+  private handleOnPlayAgain = () => {
+    debug('handleOnPlayAgain')
+    this.newQuiz()
   }
 }
