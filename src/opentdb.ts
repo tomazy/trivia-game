@@ -24,8 +24,18 @@ export async function fetchQuestions(numQuestions: number): Promise<Question[]> 
   const type = 'boolean'
   const url = `https://opentdb.com/api.php?amount=${numQuestions}&difficulty=${difficulty}&type=${type}`
 
-  const resp = await fetch(url)
+  let resp: Response
+  try {
+    resp = await fetch(url)
+    debug('fetchQuestions: got response', resp)
+  } catch (e) {
+    debug('fetchQuestions: fetch error', e)
+    throw new Error('Failed to fetch questions. Please check your internet connection.')
+  }
+
   const json = await resp.json()
+  debug('fetchQuestions: json', json)
+
   return json.results.map(transformQuestion)
 }
 

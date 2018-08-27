@@ -53,4 +53,15 @@ describe('fetching questions', () => {
     const questions = await fetchQuestions(1234)
     expect(questions[1].questionText).toMatch(/"Do the Bartman"/)
   })
+
+  it('intercepts connection issues', async () => {
+    expect.assertions(1)
+    fetch.mockReject(new Error('Boom!'))
+
+    try {
+      await fetchQuestions(1234)
+    } catch (e) {
+      expect(e.message).toMatch(/Failed to fetch questions/)
+    }
+  })
 })
