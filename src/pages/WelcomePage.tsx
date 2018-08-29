@@ -9,8 +9,8 @@ interface Props {
 }
 
 export const WelcomePage = ({ numQuestions, onBegin }: Props) => (
-  <React.Fragment>
-    <h1>Welcome to the Trivia Challenge!</h1>
+  <div className='pt3'>
+    <h1 className='mt0'>Welcome to the Trivia Challenge!</h1>
 
     <p>
       You will be presented with {numQuestions} <strong>True</strong> or <strong>False</strong> questions.
@@ -23,5 +23,5 @@ export const WelcomePage = ({ numQuestions, onBegin }: Props) => (
     <div>
       <DefaultButton onClick={() => onBegin()}>Begin</DefaultButton>
     </div>
-  </React.Fragment>
+  </div>
 )

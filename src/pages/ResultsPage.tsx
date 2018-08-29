@@ -38,8 +38,8 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
   }
 
   return (
-    <React.Fragment>
-      <h1>You scored {quiz.score}/{quiz.numQuestions}</h1>
+    <div className='pt3'>
+      <h1 className='mt0'>You scored {quiz.score}/{quiz.numQuestions}</h1>
 
       <div className='tl mb3'>
         {questions}
@@ -48,6 +48,6 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
       <div className='pb3'>
         <DefaultButton onClick={() => onPlayAgain()}>Play Again?</DefaultButton>
       </div>
-    </React.Fragment>
+    </div>
   )
 }

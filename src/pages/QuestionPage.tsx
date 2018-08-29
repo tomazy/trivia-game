@@ -15,8 +15,8 @@ const ANSWER_TRUE = 'True'
 const ANSWER_FALSE = 'False'
 
 export const QuestionPage = ({ question, questionIndex, numQuestions, onAnswer }: Props) => (
-  <React.Fragment>
-    <h2 className='f5 b mt3'>{question.category}</h2>
+  <div className='pt3'>
+    <h2 className='f5 b mt0'>{question.category}</h2>
 
     <p className='f4 pa4 shadow-2 overflow-auto' style={{minHeight: '10rem'}}>
       {question.questionText}
@@ -30,5 +30,5 @@ export const QuestionPage = ({ question, questionIndex, numQuestions, onAnswer }
       <Button className={'green'} onClick={() => onAnswer(questionIndex, ANSWER_TRUE)}>True</Button>
       <Button className={'red'} onClick={() => onAnswer(questionIndex, ANSWER_FALSE)}>False</Button>
     </div>
-  </React.Fragment>
+  </div>
 )

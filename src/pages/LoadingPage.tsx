@@ -42,7 +42,7 @@ export class LoadingPage extends React.Component<{}, State> {
     if (!pastDelay) { return null }
 
     return (
-      <div className='flex h-100 flex-column justify-center items-center'>
+      <div className='h-100 flex flex-column justify-center items-center'>
         <div className='w3 h3'>
           <Spinner />
         </div>
