@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button } from '../components/Button'
+import { DefaultButton } from '../components/Button'
 
 export type OnBegin = () => void
 
@@ -21,7 +21,7 @@ export const WelcomePage = ({ numQuestions, onBegin }: Props) => (
     </p>
 
     <div>
-      <Button onClick={() => onBegin()}>Begin</Button>
+      <DefaultButton onClick={() => onBegin()}>Begin</DefaultButton>
     </div>
   </React.Fragment>
 )

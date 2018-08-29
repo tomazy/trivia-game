@@ -8,3 +8,6 @@ export const Button = ({ className, ...rest}: Props) => (
   <button
     className={`${BUTTON_CLASS} ${className || ''}`.trim()} {...rest} />
 )
+
+export const DefaultButton = (props: Props) =>
+  <Button className='near-black' {...props} />

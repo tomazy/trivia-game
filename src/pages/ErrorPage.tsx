@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button } from '../components/Button'
+import { DefaultButton } from '../components/Button'
 
 type OnTryAgain = () => void
 
@@ -15,7 +15,7 @@ export const ErrorPage = ({ error, onTryAgain }: Props) => (
     </p>
 
     <div>
-      <Button onClick={() => onTryAgain()}>Try Again</Button>
+      <DefaultButton onClick={() => onTryAgain()}>Try Again</DefaultButton>
     </div>
   </div>
 )

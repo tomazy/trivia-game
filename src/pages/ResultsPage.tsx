@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button } from '../components/Button'
+import { DefaultButton } from '../components/Button'
 import { CorrectMark } from '../components/CorrectMark'
 import { WrongMark } from '../components/WrongMark'
 import { Quiz } from '../quiz'
@@ -46,7 +46,7 @@ export const ResultsPage = ({ quiz, onPlayAgain }: Props) => {
       </div>
 
       <div className='pb3'>
-        <Button onClick={() => onPlayAgain()}>Play Again?</Button>
+        <DefaultButton onClick={() => onPlayAgain()}>Play Again?</DefaultButton>
       </div>
     </React.Fragment>
   )
